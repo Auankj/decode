@@ -1,1 +1,1 @@
-# decode
+# Cookie Licker Detector
