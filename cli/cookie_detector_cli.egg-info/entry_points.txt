@@ -1,0 +1,2 @@
+[console_scripts]
+cookie-detector = cookie_detector_cli:main

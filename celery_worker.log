@@ -1,0 +1,159 @@
+ 
+ -------------- celery@Abhras-MacBook-Pro.local v5.5.3 (immunity)
+--- ***** ----- 
+-- ******* ---- macOS-15.6.1-arm64-arm-64bit-Mach-O 2025-10-05 00:56:10
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         cookie_licking_detector:0x104bee120
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     redis://localhost:6379/0
+- *** --- * --- .> concurrency: 1 (prefork)
+-- ******* ---- .> task events: ON
+--- ***** ----- 
+ -------------- [queues]
+                .> auto_release_check exchange=celery(direct) key=auto_release_check
+                .> comment_analysis exchange=celery(direct) key=comment_analysis
+                .> dead_letter      exchange=celery(direct) key=dead_letter
+                .> nudge_check      exchange=celery(direct) key=nudge_check
+                .> periodic_tasks   exchange=celery(direct) key=periodic_tasks
+                .> progress_check   exchange=celery(direct) key=progress_check
+
+[tasks]
+  . app.workers.celery_app.send_to_dead_letter_queue
+  . app.workers.comment_analysis.analyze_comment_for_claim
+  . app.workers.nudge_check.batch_nudge_check
+  . app.workers.nudge_check.process_nudge_check
+  . app.workers.periodic_tasks.check_stale_claims
+  . app.workers.periodic_tasks.cleanup_completed_jobs
+  . app.workers.periodic_tasks.cleanup_old_activity_logs
+  . app.workers.periodic_tasks.generate_daily_metrics
+  . app.workers.periodic_tasks.health_check
+  . app.workers.progress_check.batch_progress_check
+  . app.workers.progress_check.monitor_claim_progress
+  . app.workers.progress_check.reset_claim_timers
+
+[2025-10-05 00:56:10,895: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2025-10-05 00:56:10,903: INFO/MainProcess] 2025-10-05 00:56:10 [info     ] Worker ready: celery@Abhras-MacBook-Pro.local
+[2025-10-05 00:56:10,903: INFO/MainProcess] celery@Abhras-MacBook-Pro.local ready.
+[2025-10-05 00:56:10,904: INFO/MainProcess] Task app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] received
+[2025-10-05 00:56:10,906: INFO/ForkPoolWorker-1] 2025-10-05 00:56:10 [info     ] Task started: app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222]
+[2025-10-05 00:56:10,909: INFO/ForkPoolWorker-1] 2025-10-05 00:56:10 [info     ] Acquired lock: issue_lock:3
+[2025-10-05 00:56:10,909: INFO/ForkPoolWorker-1] 2025-10-05 00:56:10 [info     ] Processing comment analysis for issue 3
+[2025-10-05 00:56:10,912: INFO/ForkPoolWorker-1] 2025-10-05 00:56:10 [info     ] Pattern analysis result: 90% confidence
+[2025-10-05 00:56:10,912: INFO/ForkPoolWorker-1] 2025-10-05 00:56:10 [error    ] Error in comment analysis for issue 3: name 'SessionLocal' is not defined
+[2025-10-05 00:56:10,913: INFO/ForkPoolWorker-1] 2025-10-05 00:56:10 [info     ] Released lock: issue_lock:3
+[2025-10-05 00:56:10,919: INFO/ForkPoolWorker-1] 2025-10-05 00:56:10 [warning  ] Task retry: app.workers.comment_analysis.analyze_comment_for_claim[None] - Reason: Retry in 1s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:10,920: INFO/ForkPoolWorker-1] Task app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] retry: Retry in 1s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:10,920: INFO/ForkPoolWorker-1] 2025-10-05 00:56:10 [info     ] Task completed: app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] - State: RETRY
+[2025-10-05 00:56:10,922: INFO/MainProcess] Task app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] received
+[2025-10-05 00:56:11,919: INFO/ForkPoolWorker-1] 2025-10-05 00:56:11 [info     ] Task started: app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222]
+[2025-10-05 00:56:11,922: INFO/ForkPoolWorker-1] 2025-10-05 00:56:11 [info     ] Acquired lock: issue_lock:3
+[2025-10-05 00:56:11,923: INFO/ForkPoolWorker-1] 2025-10-05 00:56:11 [info     ] Processing comment analysis for issue 3
+[2025-10-05 00:56:11,925: INFO/ForkPoolWorker-1] 2025-10-05 00:56:11 [info     ] Pattern analysis result: 90% confidence
+[2025-10-05 00:56:11,926: INFO/ForkPoolWorker-1] 2025-10-05 00:56:11 [error    ] Error in comment analysis for issue 3: name 'SessionLocal' is not defined
+[2025-10-05 00:56:11,928: INFO/ForkPoolWorker-1] 2025-10-05 00:56:11 [info     ] Released lock: issue_lock:3
+[2025-10-05 00:56:11,934: INFO/ForkPoolWorker-1] 2025-10-05 00:56:11 [warning  ] Task retry: app.workers.comment_analysis.analyze_comment_for_claim[None] - Reason: Retry in 2s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:11,934: INFO/ForkPoolWorker-1] Task app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] retry: Retry in 2s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:11,935: INFO/ForkPoolWorker-1] 2025-10-05 00:56:11 [info     ] Task completed: app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] - State: RETRY
+[2025-10-05 00:56:11,939: INFO/MainProcess] Task app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] received
+[2025-10-05 00:56:13,935: INFO/ForkPoolWorker-1] 2025-10-05 00:56:13 [info     ] Task started: app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222]
+[2025-10-05 00:56:13,938: INFO/ForkPoolWorker-1] 2025-10-05 00:56:13 [info     ] Acquired lock: issue_lock:3
+[2025-10-05 00:56:13,940: INFO/ForkPoolWorker-1] 2025-10-05 00:56:13 [info     ] Processing comment analysis for issue 3
+[2025-10-05 00:56:13,941: INFO/ForkPoolWorker-1] 2025-10-05 00:56:13 [info     ] Pattern analysis result: 90% confidence
+[2025-10-05 00:56:13,942: INFO/ForkPoolWorker-1] 2025-10-05 00:56:13 [error    ] Error in comment analysis for issue 3: name 'SessionLocal' is not defined
+[2025-10-05 00:56:13,944: INFO/ForkPoolWorker-1] 2025-10-05 00:56:13 [info     ] Released lock: issue_lock:3
+[2025-10-05 00:56:13,949: INFO/ForkPoolWorker-1] 2025-10-05 00:56:13 [warning  ] Task retry: app.workers.comment_analysis.analyze_comment_for_claim[None] - Reason: Retry in 2s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:13,950: INFO/ForkPoolWorker-1] Task app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] retry: Retry in 2s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:13,951: INFO/ForkPoolWorker-1] 2025-10-05 00:56:13 [info     ] Task completed: app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] - State: RETRY
+[2025-10-05 00:56:13,954: INFO/MainProcess] Task app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] received
+[2025-10-05 00:56:15,949: INFO/ForkPoolWorker-1] 2025-10-05 00:56:15 [info     ] Task started: app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222]
+[2025-10-05 00:56:15,952: INFO/ForkPoolWorker-1] 2025-10-05 00:56:15 [info     ] Acquired lock: issue_lock:3
+[2025-10-05 00:56:15,953: INFO/ForkPoolWorker-1] 2025-10-05 00:56:15 [info     ] Processing comment analysis for issue 3
+[2025-10-05 00:56:15,955: INFO/ForkPoolWorker-1] 2025-10-05 00:56:15 [info     ] Pattern analysis result: 90% confidence
+[2025-10-05 00:56:15,957: INFO/ForkPoolWorker-1] 2025-10-05 00:56:15 [error    ] Error in comment analysis for issue 3: name 'SessionLocal' is not defined
+[2025-10-05 00:56:15,958: INFO/ForkPoolWorker-1] 2025-10-05 00:56:15 [info     ] Released lock: issue_lock:3
+[2025-10-05 00:56:15,962: INFO/ForkPoolWorker-1] 2025-10-05 00:56:15 [error    ] Task failed: app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] - Exception: name 'SessionLocal' is not defined
+[2025-10-05 00:56:15,965: ERROR/ForkPoolWorker-1] Task app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] raised unexpected: NameError("name 'SessionLocal' is not defined")
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/celery/app/trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/celery/app/trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/celery/app/autoretry.py", line 60, in run
+    ret = task.retry(exc=exc, **retry_kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/celery/app/task.py", line 743, in retry
+    raise_with_context(exc)
+    ~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/celery/app/autoretry.py", line 38, in run
+    return task._orig_run(*args, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/abhra/Desktop/decode/cookie-licking-detector/app/workers/comment_analysis.py", line 96, in analyze_comment_for_claim
+    db = SessionLocal()
+         ^^^^^^^^^^^^
+NameError: name 'SessionLocal' is not defined
+[2025-10-05 00:56:15,968: INFO/ForkPoolWorker-1] 2025-10-05 00:56:15 [info     ] Task completed: app.workers.comment_analysis.analyze_comment_for_claim[6f2ffdf3-4355-4dac-8044-bf718fd8d222] - State: FAILURE
+[2025-10-05 00:56:26,297: INFO/MainProcess] Task app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] received
+[2025-10-05 00:56:26,299: INFO/ForkPoolWorker-1] 2025-10-05 00:56:26 [info     ] Task started: app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a]
+[2025-10-05 00:56:26,299: INFO/ForkPoolWorker-1] 2025-10-05 00:56:26 [info     ] Acquired lock: issue_lock:4
+[2025-10-05 00:56:26,300: INFO/ForkPoolWorker-1] 2025-10-05 00:56:26 [info     ] Processing comment analysis for issue 4
+[2025-10-05 00:56:26,301: INFO/ForkPoolWorker-1] 2025-10-05 00:56:26 [info     ] Pattern analysis result: 95% confidence
+[2025-10-05 00:56:26,301: INFO/ForkPoolWorker-1] 2025-10-05 00:56:26 [error    ] Error in comment analysis for issue 4: name 'SessionLocal' is not defined
+[2025-10-05 00:56:26,302: INFO/ForkPoolWorker-1] 2025-10-05 00:56:26 [info     ] Released lock: issue_lock:4
+[2025-10-05 00:56:26,304: INFO/ForkPoolWorker-1] 2025-10-05 00:56:26 [warning  ] Task retry: app.workers.comment_analysis.analyze_comment_for_claim[None] - Reason: Retry in 1s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:26,304: INFO/ForkPoolWorker-1] Task app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] retry: Retry in 1s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:26,304: INFO/ForkPoolWorker-1] 2025-10-05 00:56:26 [info     ] Task completed: app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] - State: RETRY
+[2025-10-05 00:56:26,305: INFO/MainProcess] Task app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] received
+[2025-10-05 00:56:27,305: INFO/ForkPoolWorker-1] 2025-10-05 00:56:27 [info     ] Task started: app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a]
+[2025-10-05 00:56:27,306: INFO/ForkPoolWorker-1] 2025-10-05 00:56:27 [info     ] Acquired lock: issue_lock:4
+[2025-10-05 00:56:27,306: INFO/ForkPoolWorker-1] 2025-10-05 00:56:27 [info     ] Processing comment analysis for issue 4
+[2025-10-05 00:56:27,307: INFO/ForkPoolWorker-1] 2025-10-05 00:56:27 [info     ] Pattern analysis result: 95% confidence
+[2025-10-05 00:56:27,307: INFO/ForkPoolWorker-1] 2025-10-05 00:56:27 [error    ] Error in comment analysis for issue 4: name 'SessionLocal' is not defined
+[2025-10-05 00:56:27,308: INFO/ForkPoolWorker-1] 2025-10-05 00:56:27 [info     ] Released lock: issue_lock:4
+[2025-10-05 00:56:27,311: INFO/ForkPoolWorker-1] 2025-10-05 00:56:27 [warning  ] Task retry: app.workers.comment_analysis.analyze_comment_for_claim[None] - Reason: Retry in 2s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:27,311: INFO/ForkPoolWorker-1] Task app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] retry: Retry in 2s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:27,311: INFO/ForkPoolWorker-1] 2025-10-05 00:56:27 [info     ] Task completed: app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] - State: RETRY
+[2025-10-05 00:56:27,313: INFO/MainProcess] Task app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] received
+[2025-10-05 00:56:29,311: INFO/ForkPoolWorker-1] 2025-10-05 00:56:29 [info     ] Task started: app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a]
+[2025-10-05 00:56:29,312: INFO/ForkPoolWorker-1] 2025-10-05 00:56:29 [info     ] Acquired lock: issue_lock:4
+[2025-10-05 00:56:29,313: INFO/ForkPoolWorker-1] 2025-10-05 00:56:29 [info     ] Processing comment analysis for issue 4
+[2025-10-05 00:56:29,314: INFO/ForkPoolWorker-1] 2025-10-05 00:56:29 [info     ] Pattern analysis result: 95% confidence
+[2025-10-05 00:56:29,314: INFO/ForkPoolWorker-1] 2025-10-05 00:56:29 [error    ] Error in comment analysis for issue 4: name 'SessionLocal' is not defined
+[2025-10-05 00:56:29,315: INFO/ForkPoolWorker-1] 2025-10-05 00:56:29 [info     ] Released lock: issue_lock:4
+[2025-10-05 00:56:29,317: INFO/ForkPoolWorker-1] 2025-10-05 00:56:29 [warning  ] Task retry: app.workers.comment_analysis.analyze_comment_for_claim[None] - Reason: Retry in 3s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:29,317: INFO/ForkPoolWorker-1] Task app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] retry: Retry in 3s: NameError("name 'SessionLocal' is not defined")
+[2025-10-05 00:56:29,318: INFO/ForkPoolWorker-1] 2025-10-05 00:56:29 [info     ] Task completed: app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] - State: RETRY
+[2025-10-05 00:56:29,319: INFO/MainProcess] Task app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] received
+[2025-10-05 00:56:32,320: INFO/ForkPoolWorker-1] 2025-10-05 00:56:32 [info     ] Task started: app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a]
+[2025-10-05 00:56:32,323: INFO/ForkPoolWorker-1] 2025-10-05 00:56:32 [info     ] Acquired lock: issue_lock:4
+[2025-10-05 00:56:32,324: INFO/ForkPoolWorker-1] 2025-10-05 00:56:32 [info     ] Processing comment analysis for issue 4
+[2025-10-05 00:56:32,326: INFO/ForkPoolWorker-1] 2025-10-05 00:56:32 [info     ] Pattern analysis result: 95% confidence
+[2025-10-05 00:56:32,328: INFO/ForkPoolWorker-1] 2025-10-05 00:56:32 [error    ] Error in comment analysis for issue 4: name 'SessionLocal' is not defined
+[2025-10-05 00:56:32,329: INFO/ForkPoolWorker-1] 2025-10-05 00:56:32 [info     ] Released lock: issue_lock:4
+[2025-10-05 00:56:32,333: INFO/ForkPoolWorker-1] 2025-10-05 00:56:32 [error    ] Task failed: app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] - Exception: name 'SessionLocal' is not defined
+[2025-10-05 00:56:32,335: ERROR/ForkPoolWorker-1] Task app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] raised unexpected: NameError("name 'SessionLocal' is not defined")
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/celery/app/trace.py", line 453, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/celery/app/trace.py", line 736, in __protected_call__
+    return self.run(*args, **kwargs)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/celery/app/autoretry.py", line 60, in run
+    ret = task.retry(exc=exc, **retry_kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/celery/app/task.py", line 743, in retry
+    raise_with_context(exc)
+    ~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/celery/app/autoretry.py", line 38, in run
+    return task._orig_run(*args, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/abhra/Desktop/decode/cookie-licking-detector/app/workers/comment_analysis.py", line 96, in analyze_comment_for_claim
+    db = SessionLocal()
+         ^^^^^^^^^^^^
+NameError: name 'SessionLocal' is not defined
+[2025-10-05 00:56:32,337: INFO/ForkPoolWorker-1] 2025-10-05 00:56:32 [info     ] Task completed: app.workers.comment_analysis.analyze_comment_for_claim[b15301ae-4b9b-465a-a106-91f98488ac2a] - State: FAILURE
+
+worker: Warm shutdown (MainProcess)
+
+worker: Warm shutdown (MainProcess)

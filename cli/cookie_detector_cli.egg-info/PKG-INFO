@@ -1,0 +1,160 @@
+Metadata-Version: 2.4
+Name: cookie-detector-cli
+Version: 1.0.0
+Summary: Command-line interface for the Cookie Licking Detector system
+Home-page: https://github.com/cookie-licking-detector/cli
+Author: Cookie Licking Detector Team
+Author-email: support@cookie-detector.com
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.25.0
+Requires-Dist: rich>=10.0.0
+Requires-Dist: toml>=0.10.0
+Requires-Dist: click>=8.0.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Cookie Licking Detector CLI
+
+The official command-line interface for the Cookie Licking Detector system. Monitor and manage GitHub issue claims directly from your terminal.
+
+## Features
+
+- **Real-time Dashboard**: Monitor active and stale claims
+- **Repository Management**: Register/unregister repositories for monitoring
+- **Claim Tracking**: View and manage issue claims
+- **System Health**: Check backend status and performance
+- **Configuration**: Manage settings and API endpoints
+- **Notifications**: Track sent nudges and auto-releases
+- **Task Management**: Monitor background task processing
+- **Worker Status**: Check Celery worker status
+- **Analytics**: View system metrics and performance
+- **Reporting**: Generate detailed reports
+
+## Installation
+
+```bash
+pip install -e cli/
+```
+
+## Usage
+
+### Basic Commands
+
+```bash
+# Check system status
+cookie-detector status
+
+# View current configuration
+cookie-detector config show
+
+# Set configuration
+cookie-detector config set api_url http://localhost:8000
+
+# List monitored repositories
+cookie-detector repos list
+
+# Register a repository
+cookie-detector repos register owner/repository
+
+# List all claims
+cookie-detector claims list
+
+# List active claims only
+cookie-detector claims active
+
+# List stale claims only
+cookie-detector claims stale
+
+# Show real-time dashboard
+cookie-detector dashboard
+```
+
+### Advanced Commands
+
+```bash
+# Check background task status
+cookie-detector tasks status
+
+# Check Celery worker status
+cookie-detector workers
+
+# View notification history
+cookie-detector notifications history
+
+# View system alerts
+cookie-detector alerts
+
+# Generate analytics summary
+cookie-detector analytics summary
+
+# Generate detailed report
+cookie-detector report
+```
+
+### Command Structure
+
+```
+cookie-detector
+├── status                    # Check system health
+├── config                    # Configuration management
+│   ├── show                  # Show current config
+│   └── set <key> <value>     # Set configuration
+├── repos                     # Repository management
+│   ├── list                  # List monitored repos
+│   ├── register <repo>       # Register new repo
+│   └── unregister            # Unregister repo
+├── claims                    # Claim management
+│   ├── list                  # List all claims
+│   ├── active                # List active claims
+│   └── stale                 # List stale claims
+├── dashboard                 # Real-time dashboard
+├── tasks                     # Task management
+│   └── status                # Background task status
+├── workers                   # Celery worker status
+├── notifications             # Notification history
+│   └── history               # Show notification history
+├── alerts                    # System alerts
+├── analytics                 # Analytics summary
+│   └── summary               # Show analytics
+└── report                    # Generate reports
+```
+
+## Configuration
+
+The CLI uses a configuration file located at `~/.cookie_detector/config.toml`. Default settings:
+
+```toml
+api_url = "http://localhost:8000"
+default_grace_period = 7
+default_nudge_count = 2
+```
+
+## Integration
+
+The CLI integrates with the Cookie Licking Detector backend API. When the server is not running, the CLI provides mock data for demonstration purposes.
+
+## Development
+
+To contribute to the CLI:
+
+1. Make changes to the code
+2. Reinstall in development mode: `pip install -e cli/`
+3. Test commands: `cookie-detector --help`

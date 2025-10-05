@@ -1,0 +1,68 @@
+# Core Framework (FastAPI from MD file)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+gunicorn==21.2.0
+
+# Database (PostgreSQL from MD file)
+psycopg2-binary>=2.9.9
+sqlalchemy==2.0.23
+alembic==1.12.1
+
+# Queue System (Redis + Celery from MD file)
+redis==5.0.1
+celery==5.3.4
+
+# HTTP Client (for Ecosyste.ms API)
+httpx==0.25.2
+requests==2.31.0
+
+# Configuration
+pydantic==2.5.2
+python-dotenv==1.0.0
+pydantic-settings==2.1.0
+
+# GitHub Integration
+PyGithub==1.59.1
+
+# Email Service (SendGrid from MD file)
+sendgrid==6.11.0
+
+# Production Configuration
+pydantic-settings==2.1.0
+
+# Structured Logging
+structlog==23.2.0
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+
+# Monitoring & Metrics
+prometheus-client==0.19.0
+sentry-sdk[fastapi]==1.38.0
+
+# HTML parsing for notifications
+beautifulsoup4==4.12.2
+
+# Data Processing
+python-dateutil==2.8.2
+
+# System monitoring
+psutil==5.9.6
+
+# JSON logging
+pythonjsonlogger==2.0.7
+
+# Additional authentication deps
+bcrypt==4.1.2
+
+# Testing (for hackathon validation)
+pytest==7.4.4
+pytest-asyncio==0.21.1
+
+# Development
+black==23.11.0
+
+# Async support
+aiosqlite==0.19.0
